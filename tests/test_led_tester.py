@@ -4,9 +4,9 @@
 """Tests for `led_tester` package."""
 
 import pytest
-
+import os
+import re
 from click.testing import CliRunner
-from led_tester import utils
 from led_tester import led_tester
 from led_tester import cli
 
@@ -37,6 +37,6 @@ def test_command_line_interface():
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output"""
     ifile = "./data/test_data.txt"
-    N, instructions = utils.parseFile(ifile)
-    assert N is not None
+    N, instructions = led_tester.parseInput(ifile)
+    assert N==10
 

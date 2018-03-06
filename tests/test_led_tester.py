@@ -6,7 +6,7 @@
 import pytest
 
 from click.testing import CliRunner
-
+from led_tester import utils
 from led_tester import led_tester
 from led_tester import cli
 
@@ -28,11 +28,15 @@ def test_content(response):
 
 
 def test_command_line_interface():
-    """Test the CLI."""
+    """Test the CLI.
     runner = CliRunner()
     result = runner.invoke(cli.main)
     assert result.exit_code == 0
     assert 'led_tester.cli.main' in result.output
     help_result = runner.invoke(cli.main, ['--help'])
     assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
+    assert '--help  Show this message and exit.' in help_result.output"""
+    ifile = "./data/test_data.txt"
+    N, instructions = utils.parseFile(ifile)
+    assert N is not None
+

@@ -4,8 +4,17 @@ import urllib.request
 import re
 import pytest
 import os
+import argparse
+import numpy as np
 
 """Main module."""
+class LightTester:
+    lights=None
+    def __init__(self,N):
+        self.size=N
+        self.lights=np.zeros((N,N),dtype=bool)
+
+        
 def parseInput(filename):
     """Read the file, if the file does not exist will return an error message."""
     if filename.startswith("http:"):
@@ -26,3 +35,11 @@ def parseInput(filename):
             print("The file does not exits")
     return size,instructions
 
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', help='input help')
+    args = parser.parse_args()
+    filename = args.input
+    N, instructions=parseInput(filename)
+    led=LightTester(N)
+    

@@ -22,7 +22,18 @@ def test_content(response):
     """Sample pytest test function with the pytest fixture as an argument."""
     # from bs4 import BeautifulSoup
     # assert 'GitHub' in BeautifulSoup(response.content).title.string
+    
+def test_range():
+    '''test whether the region inside the range'''
+    x1,x2,y1,y2=run.checkRange(-1,-1,5,3,10)
+    assert x1==0 and x2==0 and y1==3 and y2==5
 
+    x1,x2,y1,y2=run.checkRange(10,2,10,2,10)
+    assert x1==2 and x2==9 and y1==2 and y2==9
+
+    x1,x2,y1,y2=run.checkRange(2,7,2,7,10)
+    assert x1==2 and x2==7 and y1==2 and y2==7
+    
 def test_initialize():
     size=20
     led=run.LightTester(size)

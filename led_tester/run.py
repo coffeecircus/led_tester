@@ -43,6 +43,19 @@ def parseInput(filename):
             print("The file does not exits")
     return size_input,instructions
 
+def checkRange(x1,x2,y1,y2,N):
+    a1,a2,b1,b2=x1,x2,y1,y2
+    a1=min(max(0,a1),N-1)
+    a2=min(max(0,a2),N-1)
+    b1=min(max(0,b1),N-1)
+    b2=min(max(0,b2),N-1)
+    if a1>a2:
+        a1,a2=a2,a1
+        b1,b2=b2,b1
+    elif a1==a2 and b1>b2:
+        b1,b2=b2,b1
+    return(a1,a2,b1,b2)
+        
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--input', help='input help')
@@ -57,5 +70,6 @@ def main():
         y1=int(instruction[i][2])
         x2=int(instruction[i][3])
         x2=int(instruction[i][4])
+        x1,x2,y1,y2=checkRange(x1,x2,y1,y2,N)
         
     

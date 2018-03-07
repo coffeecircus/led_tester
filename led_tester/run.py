@@ -14,6 +14,14 @@ class LightTester:
     def __init__(self,N):
         self.size=N
         self.lights=np.zeros((N,N),dtype=bool)
+        
+    def apply(self,cmd,x1,y1,x2,y2):
+        if cmd=="turn on":
+            self.lights[x1:x2+1,y1:y2+1]=True
+        elif cmd=="turn off":
+            self.lights[x1:x2+1,y1:y2+1]=False
+        elif cmd=="switch":
+            self.lights[x1:x2+1,y1:y2+1]^=True
            
 def getInstructions(buffer):
     ins=[]
@@ -25,9 +33,9 @@ def getInstructions(buffer):
     return ins
 
 def parseInput(filename):
+    """Read the file, if the file does not exist will return an error message."""
     size_input=0
     instructions=[]
-    """Read the file, if the file does not exist will return an error message."""
     if filename.startswith("http:"):
         uri=filename
         req=urllib.request.urlopen(uri)
@@ -44,6 +52,7 @@ def parseInput(filename):
     return size_input,instructions
 
 def checkRange(x1,x2,y1,y2,N):
+    '''Make the region valid'''
     a1,a2,b1,b2=x1,x2,y1,y2
     a1=min(max(0,a1),N-1)
     a2=min(max(0,a2),N-1)

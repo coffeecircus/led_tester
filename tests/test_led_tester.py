@@ -23,6 +23,35 @@ def test_content(response):
     # from bs4 import BeautifulSoup
     # assert 'GitHub' in BeautifulSoup(response.content).title.string
     
+def test_apply_turn_on():
+    '''test the behaviour of turn on the lights'''
+    size=5
+    led=run.LightTester(size)
+    led.apply("turn on",0,0,2,2)
+    assert np.sum(led.lights==1)==9
+
+def test_apply_turn_off():
+    '''test the behaviour of turn off the lights'''
+    size=6
+    led=run.LightTester(size)
+    led.apply("turn on",0,0,2,2)
+    led.apply("turn off",0,0,1,1)
+    assert np.sum(led.lights==1)==5
+
+def test_apply_switch():
+    '''test the behaviour of switch the lights'''
+    size=5
+    led=run.LightTester(size)
+    led.apply("switch",0,0,2,2)
+    assert np.sum(led.lights==1)==9
+
+def test_apply_wrong_cmd():
+    '''test the behaviour of dealing with other commands'''
+    size=5
+    led=run.LightTester(size)
+    led.apply("abcd",0,0,2,2)
+    assert np.sum(led.lights==0)==25
+
 def test_range():
     '''test whether the region inside the range'''
     x1,x2,y1,y2=run.checkRange(-1,-1,5,3,10)

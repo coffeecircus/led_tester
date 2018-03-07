@@ -28,8 +28,18 @@ def test_initialize():
     led=run.LightTester(size)
     assert np.sum(led.lights==0)==size*size 
     
-'''def test_command_line_interface():
+def test_file():
+    '''test wheather a file or url exists or not'''
     ifile = "./data/test_data.txt"
-    N, instructions = led_tester.parseInput(ifile)
-    assert N==10'''
+    N, instructions = run.parseInput(ifile)
+    assert N==10
+    
+    ifile = "./data/test_data1.txt"
+    N, instructions = run.parseInput(ifile)
+    assert N==0 and instructions==[]
+    
+    ifile = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
+    N, instructions = run.parseInput(ifile)
+    assert N==1000 and instructions[0][1]=='turn off' and instructions[2][1]=="turn off"
+
 

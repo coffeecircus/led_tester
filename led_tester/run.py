@@ -29,7 +29,7 @@ def getInstructions(buffer):
         pat = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
         l=pat.match(buffer[i])
         if l:
-            ins.append(l)
+            ins.append(l)               
     return ins
 
 def parseInput(filename):
@@ -66,19 +66,29 @@ def checkRange(x1,x2,y1,y2,N):
     return(a1,a2,b1,b2)
         
 def main():
+    x1,x2,y1,y2=0,0,0,0
+    cmd=[]
     parser = argparse.ArgumentParser()
     parser.add_argument('--input', help='input help')
     args = parser.parse_args()
     filename = args.input
-    N, instructions=parseInput(filename)
+    N, instruction=parseInput(filename)
     led=LightTester(N)
-    length=len(instructions)
-    for i in len:
-        cmd=instruction[i][0]
-        x1=int(instruction[i][1])
-        y1=int(instruction[i][2])
-        x2=int(instruction[i][3])
+    length=len(instruction)
+    for i in range(length):
+        cmd=instruction[i][1]
+        x1=int(instruction[i][2])
+        y1=int(instruction[i][3])
         x2=int(instruction[i][4])
+        y2=int(instruction[i][5])
         x1,x2,y1,y2=checkRange(x1,x2,y1,y2,N)
+        led.apply(cmd,x1,y1,x2,y2)
+    ans=np.sum(led.lights==1)
+    print("There are ",ans,' lights on. ')
+
+if __name__=="__main__":
+	main()
+
+
         
     

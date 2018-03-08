@@ -16,17 +16,10 @@ led_tester
 
 
 
-Python Boilerplate contains all the boilerplate you need to create a Python package.
+Read a list of these instructions from a file. 
+Count how many lights are on after all the instructions have been applied..
 
 
-* Free software: GNU General Public License v3
-* Documentation: https://led-tester.readthedocs.io.
-
-
-Features
---------
-
-* TODO
 
 Credits
 -------

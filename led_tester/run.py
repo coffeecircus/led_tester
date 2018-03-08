@@ -61,11 +61,8 @@ def checkRange(x1,x2,y1,y2,N):
     a2=min(max(0,a2),N-1)
     b1=min(max(0,b1),N-1)
     b2=min(max(0,b2),N-1)
-    if a1>a2:
-        a1,a2=a2,a1
-        b1,b2=b2,b1
-    elif a1==a2 and b1>b2:
-        b1,b2=b2,b1
+    a1,a2=min(a1,a2),max(a1,a2)
+    b1,b2=min(b1,b2),max(b1,b2)
     return(a1,a2,b1,b2)
         
 def main():

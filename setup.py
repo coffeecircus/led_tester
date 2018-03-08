@@ -35,7 +35,7 @@ setup(
     description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
     entry_points={
         'console_scripts': [
-            'led_tester=led_tester.cli:main',
+            'solve_led=led_tester.run:main',
         ],
     },
     install_requires=requirements,

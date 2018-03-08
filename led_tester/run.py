@@ -37,11 +37,14 @@ def parseInput(filename):
     size_input=0
     instructions=[]
     if filename.startswith("http:"):
-        uri=filename
-        req=urllib.request.urlopen(uri)
-        buffer=req.read().decode('utf-8').split("\n")
-        size_input=int(buffer[0])
-        instructions=getInstructions(buffer)
+        try:
+            uri=filename
+            req=urllib.request.urlopen(uri)
+            buffer=req.read().decode('utf-8').split("\n")
+            size_input=int(buffer[0])
+            instructions=getInstructions(buffer)
+        except urllib.error.HTTPError:
+            print("The URL is Error")
     else:
         if os.path.exists(filename):
             buffer=open(filename).read().split("\n")
@@ -88,7 +91,3 @@ def main():
 
 if __name__=="__main__":
 	main()
-
-
-        
-    

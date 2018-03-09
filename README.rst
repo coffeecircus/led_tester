@@ -16,7 +16,7 @@ led_tester
 
 
 
-Read a list of these instructions from a file. 
+Read a list of instructions from a file. 
 Count how many lights are on after all the instructions have been applied..
 
 
